@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "248097505471",
+    "project_id": "better-u2024",
+    "storage_bucket": "better-u2024.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248097505471:android:d45cb820e5fc624262860a",
+        "android_client_info": {
+          "package_name": "com.example.newpapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg0NKGVzXhKPX9-G_Y4pcrF5r5yd0t1CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

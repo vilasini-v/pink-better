@@ -24,7 +24,7 @@ class _WeeklyPlannerScreenState extends State<WeeklyPlannerScreen> with SingleTi
     _tabController = TabController(
         length: 7,
         vsync: this,
-        initialIndex: DateTime.now().weekday - 1
+        initialIndex: DateTime.now().weekday
     );
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<TaskData>(context, listen: false).prepareData();

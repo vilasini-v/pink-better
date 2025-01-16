@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:newpapp/data/hairfall_data.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:newpapp/data/hive_db.dart';
+import 'package:newpapp/data/notes_data.dart';
 import 'package:newpapp/data/task_data.dart';
-import 'package:newpapp/pages/counter.dart';
+import 'package:newpapp/pages/notes_screen.dart';
 import 'package:newpapp/pages/weekly_planner.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Hive.initFlutter();
+  await HiveDb.init();
   runApp(const MainApp());
 }
 
@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => HairfallData()),
+        ChangeNotifierProvider(create: (context) => NotesData()),
         ChangeNotifierProvider(create: (context) => TaskData()),
       ],
       child: MaterialApp(
@@ -31,7 +31,7 @@ class MainApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: AppBarTheme(
             elevation: 0,
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.pink[100],
             foregroundColor: Colors.white,
           ),
         ),
@@ -52,7 +52,7 @@ class _NavigationControllerState extends State<NavigationController> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const CounterPage(),
+    const NotesScreen(folderId: 'root'),
     const WeeklyPlannerScreen(),
   ];
 
@@ -75,7 +75,7 @@ class _NavigationControllerState extends State<NavigationController> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt),
-            label: 'Counter',
+            label: 'Notes',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
